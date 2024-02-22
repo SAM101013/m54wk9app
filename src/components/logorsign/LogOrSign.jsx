@@ -1,9 +1,7 @@
 import React from "react";
-import { useState } from "react";
-import Login from "./components/login/Login";
-import Signup from "./components/signup/Signup";
-
-import "./LogOrSign.css"; // CSS file path
+import Login from "../login/Login";
+import Signup from "../signup/Signup";
+import "./LogOrSign.css";
 
 const LogOrSign = () => {
   return (

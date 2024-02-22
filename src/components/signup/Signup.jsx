@@ -1,21 +1,26 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const changeHandler = (e, setter, state) => {
+  const changeHandler = (e, setter) => {
     setter(e.target.value);
-    console.log(state);
+    console.log(e.target.value);
   };
+
   return (
     <div>
-      <h3>Singup</h3>
-
+      <h3>Signup</h3>
       <form>
-        <input placeholder="username" onChange={(e) => changeHandler} />
-        <input placeholder="password" />
+        <input
+          placeholder="username"
+          onChange={(e) => changeHandler(e, setUsername)}
+        />
+        <input
+          placeholder="password"
+          onChange={(e) => changeHandler(e, setPassword)}
+        />
         <button>Signup</button>
       </form>
     </div>
