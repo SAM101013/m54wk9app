@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../login/Login";
+import Login from "../login/login";
 import Signup from "../signup/Signup";
 import "./LogOrSign.css";
 
@@ -11,5 +11,4 @@ const LogOrSign = () => {
     </div>
   );
 };
-
 export default LogOrSign;

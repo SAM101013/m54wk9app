@@ -1,6 +1,6 @@
 import React from "react";
-import LogOrSign from "./logorsign/LogOrSign";
-import "App.css";
+import LogOrSign from "./components/logorsign/LogOrSign";
+import "./App.css";
 
 function App() {
   return (

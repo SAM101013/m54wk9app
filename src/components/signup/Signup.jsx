@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const Signup = () => {
+const signup = () => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const changeHandler = (e, setter) => {
+  const handleSubmit = (e, setter) => {
     setter(e.target.value);
     console.log(e.target.value);
   };
@@ -12,19 +13,23 @@ const Signup = () => {
   return (
     <div>
       <h3>Signup</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           placeholder="username"
-          onChange={(e) => changeHandler(e, setUsername)}
+          onChange={(e) => changeHandler(e, setUsername, username)}
+        />
+        <input
+          placeholder="email"
+          onChange={(e) => changeHandler(e, setEmail, email)}
         />
         <input
           placeholder="password"
-          onChange={(e) => changeHandler(e, setPassword)}
+          onChange={(e) => changeHandler(e, setPassword, password)}
         />
-        <button>Signup</button>
+        <button type="submit">Signup</button>
       </form>
     </div>
   );
 };
 
-export default Signup;
+export default signup;

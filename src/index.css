@@ -8,5 +8,5 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid blue;
+  border: 3px solid rgb(22, 22, 27);
 }
