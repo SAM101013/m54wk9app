@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const backendUri = process.env.REACT_APP_BACKEND_URI;
+// Ensure this variable is defined in your environment
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const api = axios.create({
-  baseURL: backendUri,
+  baseURL: backendUrl,
   timeout: 5000, // milliseconds
   headers: {
     "Content-Type": "application/json",
@@ -48,4 +49,4 @@ const apiRoutes = {
   },
 };
 
-export default backendUri;
+export default apiRoutes;

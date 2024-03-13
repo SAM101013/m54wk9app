@@ -1,47 +1,57 @@
-import { useState } from "react";
-
-import { signupFetch, testFetch } from "../../utils/fetch";
-
-import "./Signup.css";
+import React, { useState } from "react";
+import apiRoutes from "../../utils/apiRoutes";
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null);
 
-  const changeHandler = (e, setter, state) => {
-    setter(e.target.value);
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hello world");
-    signupFetch(username, email, password);
+    try {
+      const response = await apiRoutes.signupUser(formData);
+      console.log("Signup successful:", response);
+      // Optionally, handle successful signup
+    } catch (error) {
+      setError(error.message || "Signup failed");
+    }
   };
 
   return (
-    <div className="signup-wrapper">
-      <div className="signup-inner-container">
-        <h3 className="signup-title">Sign Up</h3>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <input
-            className="signup-input"
-            placeholder="Username"
-            onChange={(event) => changeHandler(event, setUsername, username)}
-          />
-          <input
-            className="signup-input"
-            placeholder="Email"
-            onChange={(event) => changeHandler(event, setEmail, email)}
-          />
-          <input
-            className="signup-input"
-            placeholder="Password"
-            onChange={(event) => changeHandler(event, setPassword, password)}
-          />
-          <button type="submit">Sign Up</button>
-        </form>
-      </div>
+    <div>
+      <h2>Sign Up</h2>
+      {error && <p>{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <button type="submit">Sign Up</button>
+      </form>
     </div>
   );
 };

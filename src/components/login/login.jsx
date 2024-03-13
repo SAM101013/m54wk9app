@@ -1,21 +1,26 @@
-import { useState } from "react";
-
-import { loginFetch } from "../../utils/fetch";
+import React, { useState } from "react";
+import apiRoutes from "../../utils/apiRoutes"; // Import apiRoutes
 
 const Login = ({ setLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const changeHandler = (e, setter, state) => {
+  const changeHandler = (e, setter) => {
     setter(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = await loginFetch(username, password);
-    console.log("hello: ", data);
-    await setLoggedIn(data.user);
+    try {
+      // Call the loginUser method from apiRoutes
+      const data = await apiRoutes.loginUser({ username, password });
+      console.log("Login success: ", data);
+      setLoggedIn(data); // Assuming data contains user information
+    } catch (error) {
+      console.error("Login failed: ", error);
+      // Handle login failure
+    }
   };
 
   return (
@@ -26,12 +31,14 @@ const Login = ({ setLoggedIn }) => {
           <input
             className="signup-input"
             placeholder="Username"
-            onChange={(event) => changeHandler(event, setUsername, username)}
+            value={username}
+            onChange={(event) => changeHandler(event, setUsername)}
           />
           <input
             className="signup-input"
             placeholder="Password"
-            onChange={(event) => changeHandler(event, setPassword, password)}
+            value={password}
+            onChange={(event) => changeHandler(event, setPassword)}
           />
           <button type="submit">Login</button>
         </form>
