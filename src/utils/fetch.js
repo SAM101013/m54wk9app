@@ -1,5 +1,12 @@
-export const signup = async () => {
-  const response = await fetch("http://localhost:5003/users/signup", {
+export const testFetch = async () => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`);
+  const data = await response.json();
+
+  console.log(data);
+};
+
+export const signupFetch = async (username, email, password) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
     method: "POST",
     mode: "cors",
     headers: {
@@ -13,5 +20,26 @@ export const signup = async () => {
   });
 
   const data = await response.json();
-  console.log("data in fetch signup", data);
+  console.log("signup done: ", data);
+};
+
+export const loginFetch = async (username, password) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URL}/users/login`,
+    {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    }
+  );
+
+  const data = await response.json();
+
+  return data;
 };
