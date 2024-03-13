@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import apiRoutes from "../../utils/apiRoutes";
+import "../../App.scss";
 
 const Signup = () => {
   const [formData, setFormData] = useState({

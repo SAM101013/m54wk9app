@@ -1,11 +1,10 @@
 import axios from "axios";
 
-// Ensure this variable is defined in your environment
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+const backendUrl = "http://localhost:5003";
 
 const api = axios.create({
   baseURL: backendUrl,
-  timeout: 5000, // milliseconds
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },

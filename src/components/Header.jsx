@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.css";
+import "../App.scss";
 
 const Header = ({ loggedIn }) => {
   return (
@@ -10,7 +10,7 @@ const Header = ({ loggedIn }) => {
             Welcome to my App, {loggedIn.username}!
           </h1>
         ) : (
-          <h1 className="header-title">Header</h1>
+          <h1 className="header-title">Users</h1>
         )}
       </div>
     </div>

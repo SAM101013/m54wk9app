@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import apiRoutes from "../../utils/apiRoutes"; // Import apiRoutes
+import apiRoutes from "../../utils/apiRoutes";
+
+import "../../App.scss";
 
 const Login = ({ setLoggedIn }) => {
   const [username, setUsername] = useState("");
